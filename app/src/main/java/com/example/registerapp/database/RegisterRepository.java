@@ -12,13 +12,12 @@ public class RegisterRepository {
     private DataDao mDataDao;
     private LiveData<List<PersonalData>> mAllData;
 
-    public RegisterRepository(Context context) {
-        RegisterRoomDatabase db = RegisterRoomDatabase.getDatabase(context);
-        mDataDao = db.dataDao();
+    public RegisterRepository(DataDao dataDao) {
+        mDataDao = dataDao;
         mAllData = mDataDao.getAllPersonalData();
     }
 
-    public LiveData<List<PersonalData>> getAllData() {
+    public LiveData<List<PersonalData>> getAllPersonalData() {
         return mAllData;
     }
 
@@ -28,7 +27,7 @@ public class RegisterRepository {
         });
     }
 
-    public void delete(PersonalData personalData) {
+    public void deletePersonalData(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.deletePersonalData(personalData);
         });

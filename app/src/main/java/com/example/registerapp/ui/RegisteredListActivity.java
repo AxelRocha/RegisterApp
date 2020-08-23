@@ -12,7 +12,7 @@ import com.example.registerapp.model.PersonalData;
 
 import java.util.List;
 
-public class RegisteredListActivity extends AppCompatActivity implements RegisterListContract.View{
+public class RegisteredListActivity extends AppCompatActivity implements RegisterListContract.View, RegisterListContract.OnItemClickListener, RegisterListContract.DeleteListener {
 
     private RegisterListContract.Presenter mPresenter;
     private RegisterListAdapter mAdapter;
@@ -22,7 +22,7 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAdapter = new RegisterListAdapter();
+        mAdapter = new RegisterListAdapter(this);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -46,5 +46,26 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
     @Override
     public void setRegisters(List<PersonalData> personalData) {
         mAdapter.setDatas(personalData);
+    }
+
+    @Override
+    public void showDeleteConfirmDialog(PersonalData personalData) {
+        DeleteDialogFragment fragment = new DeleteDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("personalDataObj", personalData);
+        fragment.setArguments(bundle);
+        fragment.show(getSupportFragmentManager(), "confirmDialog");
+    }
+
+    @Override
+    public void clickLongItem(PersonalData personalData) {
+        mPresenter.openConfirmDeleteDialog(personalData);
+    }
+
+    @Override
+    public void setConfirm(boolean confirm, PersonalData personalData) {
+        if (confirm){
+            mPresenter.deleteRegister(personalData);
+        }
     }
 }

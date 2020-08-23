@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapter.ViewHolder> {
-    private List<PersonalData> mDatas;
 
-    public RegisterListAdapter(){
+    private List<PersonalData> mDatas;
+    private RegisterListContract.OnItemClickListener mOnItemClickListener;
+
+    public RegisterListAdapter(RegisterListContract.OnItemClickListener onItemClickListener){
         mDatas = new ArrayList<>();
+        mOnItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -33,6 +36,14 @@ public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapte
         holder.mItem = mDatas.get(position);
         holder.nameTextView .setText(mDatas.get(position).getName());
         holder.phoneTextView .setText(mDatas.get(position).getPhone());
+
+        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mOnItemClickListener.clickLongItem(holder.mItem);
+                return false;
+            }
+        });
     }
 
     @Override
