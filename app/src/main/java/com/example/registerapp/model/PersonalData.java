@@ -3,6 +3,7 @@ package com.example.registerapp.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -44,6 +45,18 @@ public class PersonalData implements Serializable {
     @NonNull
     @ColumnInfo(name = "uf")
     private String uf;
+
+    @Ignore
+    public PersonalData() {
+        this.name = "";
+        this.age = 0;
+        this.phone = "";
+        this.cep = "";
+        this.street = "";
+        this.district = "";
+        this.city = "";
+        this.uf = "";
+    }
 
 
     public PersonalData(@NonNull String name, int age, @NonNull String phone, @NonNull String cep, @NonNull String street, @NonNull String district, @NonNull String city, @NonNull String uf) {
