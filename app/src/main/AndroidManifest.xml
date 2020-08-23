@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.addregister.AddRegisterActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".ui.registerlist.RegisteredListActivity">
         </activity>
         <activity android:name=".ui.registerlist.RegisteredListActivity">
             <intent-filter>
