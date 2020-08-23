@@ -115,7 +115,7 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
     }
 
     public boolean isValidName(String name) {
-        Pattern patron = Pattern.compile("^[a-zA-Z ]+$");
+        Pattern patron = Pattern.compile("[A-Za-zÀ-ÿ '-]*");
         return patron.matcher(name).matches();
     }
 
