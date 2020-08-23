@@ -15,15 +15,17 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {PersonalData.class}, version = 1, exportSchema = false)
 public abstract class RegisterRoomDatabase extends RoomDatabase {
+
     public abstract DataDao dataDao();
 
     private static volatile RegisterRoomDatabase INSTANCE;
+
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static RegisterRoomDatabase getDatabase(final Context context) {
+    public static RegisterRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (RegisterRoomDatabase.class) {
                 if (INSTANCE == null) {

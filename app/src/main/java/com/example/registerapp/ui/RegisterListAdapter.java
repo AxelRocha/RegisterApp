@@ -40,6 +40,11 @@ public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapte
         return mDatas.size();
     }
 
+    public void setDatas(List<PersonalData> datas){
+        mDatas = datas;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView nameTextView;
