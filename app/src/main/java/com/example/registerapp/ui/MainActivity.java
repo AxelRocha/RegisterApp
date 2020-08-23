@@ -1,8 +1,10 @@
-package com.example.registerapp;
+package com.example.registerapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.registerapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
