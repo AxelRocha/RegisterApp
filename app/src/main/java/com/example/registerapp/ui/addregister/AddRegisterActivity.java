@@ -3,11 +3,14 @@ package com.example.registerapp.ui.addregister;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.registerapp.R;
 import com.example.registerapp.database.RegisterRoomDatabase;
+import com.example.registerapp.model.Address;
 import com.example.registerapp.model.PersonalData;
 import com.example.registerapp.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -129,6 +132,25 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
                 }
             }
         });
+
+        mCepEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == 8){
+                    mPresenter.completeAddressWithCep(charSequence);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 
@@ -181,5 +203,13 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
     @Override
     public void finishActivity() {
         finish();
+    }
+
+    @Override
+    public void populateAddressEditTexts(Address address) {
+        mStreetEditText.setText(address.getStreet());
+        mDistrictEditText.setText(address.getDistrict());
+        mCityEditText.setText(address.getCity());
+        mUfEditText.setText(address.getUf());
     }
 }

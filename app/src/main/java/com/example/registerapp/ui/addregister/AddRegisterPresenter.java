@@ -5,11 +5,18 @@ import android.util.Patterns;
 
 import com.example.registerapp.database.DataDao;
 import com.example.registerapp.database.RegisterRepository;
+import com.example.registerapp.model.Address;
 import com.example.registerapp.model.PersonalData;
+import com.example.registerapp.network.GetDataService;
+import com.example.registerapp.network.RetrofitClientInstance;
 import com.example.registerapp.ui.registerlist.RegisterListContract;
 import com.example.registerapp.utils.Constants;
 
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddRegisterPresenter implements AddRegisterContract.Presenter {
 
@@ -80,6 +87,26 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
         }
 
         return true;
+    }
+
+    @Override
+    public void completeAddressWithCep(CharSequence charSequence) {
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<Address> call = service.getAddressByCep(charSequence.toString());
+        call.enqueue(new Callback<Address>() {
+            @Override
+            public void onResponse(Call<Address> call, Response<Address> response) {
+                Address address = response.body();
+                if (address != null){
+                    mView.populateAddressEditTexts(address);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Address> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

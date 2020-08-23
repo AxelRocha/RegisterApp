@@ -2,6 +2,7 @@ package com.example.registerapp.ui.addregister;
 
 import com.example.registerapp.BasePresenter;
 import com.example.registerapp.BaseView;
+import com.example.registerapp.model.Address;
 import com.example.registerapp.model.PersonalData;
 
 public interface AddRegisterContract {
@@ -12,6 +13,8 @@ public interface AddRegisterContract {
         void updateRegister(PersonalData personalData);
 
         boolean validate(PersonalData personalData);
+
+        void completeAddressWithCep(CharSequence charSequence);
     }
 
     interface View extends BaseView<AddRegisterContract.Presenter>{
@@ -20,5 +23,7 @@ public interface AddRegisterContract {
         void clearErrors();
 
         void finishActivity();
+
+        void populateAddressEditTexts(Address address);
     }
 }
