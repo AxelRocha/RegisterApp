@@ -1,5 +1,6 @@
 package com.example.registerapp.ui;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,22 +11,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.registerapp.R;
 import com.example.registerapp.model.PersonalData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapter.ViewHolder> {
+    private List<PersonalData> mDatas;
+
+    public RegisterListAdapter(){
+        mDatas = new ArrayList<>();
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_data_item, parent, false);
+        return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.mItem = mDatas.get(position);
+        holder.nameTextView .setText(mDatas.get(position).getName());
+        holder.phoneTextView .setText(mDatas.get(position).getPhone());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDatas.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
