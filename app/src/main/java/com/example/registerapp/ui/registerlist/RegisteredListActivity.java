@@ -21,6 +21,8 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
     private RegisterListContract.Presenter mPresenter;
     private RegisterListAdapter mAdapter;
 
+    FloatingActionButton mFab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,8 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
         RegisterRoomDatabase db = RegisterRoomDatabase.getDatabase(getApplication());
         mPresenter = new RegisterListPresenter(this, db.dataDao());
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mPresenter.addRegister();
