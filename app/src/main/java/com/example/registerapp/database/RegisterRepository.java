@@ -33,7 +33,7 @@ public class RegisterRepository {
         });
     }
 
-    public void update(PersonalData personalData) {
+    public void updateRegister(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.updatePersonalData(personalData);
         });

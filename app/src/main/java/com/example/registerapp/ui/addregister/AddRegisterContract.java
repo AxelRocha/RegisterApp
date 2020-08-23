@@ -9,6 +9,8 @@ public interface AddRegisterContract {
     interface Presenter extends BasePresenter {
         void addRegister(PersonalData personalData);
 
+        void updateRegister(PersonalData personalData);
+
         boolean validate(PersonalData personalData);
     }
 

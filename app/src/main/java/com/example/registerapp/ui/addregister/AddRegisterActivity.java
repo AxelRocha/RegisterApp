@@ -37,7 +37,9 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
 
     private FloatingActionButton mFab;
 
-    private PersonalData register;
+    private PersonalData mRegister;
+
+    private boolean mEditMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +49,37 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         RegisterRoomDatabase db = RegisterRoomDatabase.getDatabase(getApplication());
         mPresenter = new AddRegisterPresenter(this, db.dataDao());
 
-        register = new PersonalData();
+        mRegister = new PersonalData();
+
+        checkMode();
 
         initViews();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mEditMode){
+            populateViews(mRegister);
+        }
+    }
+
+    private void populateViews(PersonalData mRegister) {
+        mNameEditText.setText(mRegister.getName());
+        mAgeEditText.setText(Integer.toString(mRegister.getAge()));
+        mPhoneEditText.setText(mRegister.getPhone());
+        mCepEditText.setText(mRegister.getCep());
+        mStreetEditText.setText(mRegister.getStreet());
+        mDistrictEditText.setText(mRegister.getDistrict());
+        mCityEditText.setText(mRegister.getCity());
+        mUfEditText.setText(mRegister.getUf());
+    }
+
+    private void checkMode() {
+        if (getIntent().getExtras() != null) {
+            mRegister = (PersonalData) getIntent().getSerializableExtra(Constants.PERSONAL_DATA_ID);
+            mEditMode = true;
+        }
     }
 
     private void initViews() {
@@ -72,27 +102,31 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mUfTextInputLayout = findViewById(R.id.ufTextInputLayout);
 
         mFab = findViewById(R.id.fab);
-
+        mFab.setImageResource(mEditMode ? R.drawable.ic_baseline_edit_24 : R.drawable.ic_baseline_done_24);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                register.setName(mNameEditText.getText().toString());
-                register.setAge(getIntFromEditText(mAgeEditText.getText().toString()));
-                register.setPhone(mPhoneEditText.getText().toString());
-                register.setCep(mCepEditText.getText().toString());
-                register.setStreet(mStreetEditText.getText().toString());
-                register.setDistrict(mDistrictEditText.getText().toString());
-                register.setCity(mCityEditText.getText().toString());
-                register.setUf(mUfEditText.getText().toString());
+                mRegister.setName(mNameEditText.getText().toString());
+                mRegister.setAge(getIntFromEditText(mAgeEditText.getText().toString()));
+                mRegister.setPhone(mPhoneEditText.getText().toString());
+                mRegister.setCep(mCepEditText.getText().toString());
+                mRegister.setStreet(mStreetEditText.getText().toString());
+                mRegister.setDistrict(mDistrictEditText.getText().toString());
+                mRegister.setCity(mCityEditText.getText().toString());
+                mRegister.setUf(mUfEditText.getText().toString());
 
-                boolean valid = mPresenter.validate(register);
+                boolean valid = mPresenter.validate(mRegister);
 
                 if (!valid){
                     return;
                 }
 
-                mPresenter.addRegister(register);
+                if (mEditMode){
+                    mPresenter.updateRegister(mRegister);
+                } else {
+                    mPresenter.addRegister(mRegister);
+                }
             }
         });
     }

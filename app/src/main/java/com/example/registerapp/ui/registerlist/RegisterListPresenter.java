@@ -53,4 +53,9 @@ public class RegisterListPresenter implements RegisterListContract.Presenter {
     public void addRegister() {
         mView.callAddRegisterActivity();
     }
+
+    @Override
+    public void editRegister(PersonalData personalData) {
+        mView.callEditRegisterActivity(personalData);
+    }
 }

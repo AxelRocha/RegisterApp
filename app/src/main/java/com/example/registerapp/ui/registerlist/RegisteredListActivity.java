@@ -13,6 +13,7 @@ import com.example.registerapp.R;
 import com.example.registerapp.database.RegisterRoomDatabase;
 import com.example.registerapp.model.PersonalData;
 import com.example.registerapp.ui.addregister.AddRegisterActivity;
+import com.example.registerapp.utils.Constants;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -97,8 +98,20 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
     }
 
     @Override
+    public void callEditRegisterActivity(PersonalData personalData) {
+        Intent intent = new Intent(this, AddRegisterActivity.class);
+        intent.putExtra(Constants.PERSONAL_DATA_ID, personalData);
+        startActivity(intent);
+    }
+
+    @Override
     public void clickLongItem(PersonalData personalData) {
         mPresenter.openConfirmDeleteDialog(personalData);
+    }
+
+    @Override
+    public void clickItem(PersonalData personalData) {
+        mPresenter.editRegister(personalData);
     }
 
     @Override

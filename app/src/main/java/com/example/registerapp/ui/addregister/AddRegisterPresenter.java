@@ -29,6 +29,12 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
     }
 
     @Override
+    public void updateRegister(PersonalData personalData) {
+        mRegisterRepository.updateRegister(personalData);
+        mView.finishActivity();
+    }
+
+    @Override
     public boolean validate(PersonalData personalData) {
 
         mView.clearErrors();

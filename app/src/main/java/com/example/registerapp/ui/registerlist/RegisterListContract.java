@@ -15,6 +15,8 @@ public interface RegisterListContract {
         void deleteRegister(PersonalData personalData);
 
         void addRegister();
+
+        void editRegister(PersonalData personalData);
     }
 
     interface View extends BaseView<RegisterListContract.Presenter> {
@@ -27,10 +29,14 @@ public interface RegisterListContract {
         void showEmptyMessage();
 
         void showRegisterList();
+
+        void callEditRegisterActivity(PersonalData personalData);
     }
 
     interface OnItemClickListener {
         void clickLongItem(PersonalData personalData);
+
+        void clickItem(PersonalData personalData);
     }
 
     interface DeleteListener {
