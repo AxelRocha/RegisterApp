@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.registerapp.R;
 import com.example.registerapp.database.RegisterRoomDatabase;
@@ -21,6 +22,10 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
     private RegisterListContract.Presenter mPresenter;
     private RegisterListAdapter mAdapter;
 
+    TextView noRegisterTextView;
+
+    RecyclerView recyclerView;
+
     FloatingActionButton mFab;
 
     @Override
@@ -30,7 +35,9 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
 
         mAdapter = new RegisterListAdapter(this);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        noRegisterTextView = findViewById(R.id.noRegisterTextView);
+
+        recyclerView = findViewById(R.id.registerRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
 
@@ -75,6 +82,18 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
     public void callAddRegisterActivity() {
         Intent intent = new Intent(this, AddRegisterActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showEmptyMessage() {
+        noRegisterTextView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRegisterList() {
+        noRegisterTextView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -23,6 +23,10 @@ public interface RegisterListContract {
         void showDeleteConfirmDialog(PersonalData personalData);
 
         void callAddRegisterActivity();
+
+        void showEmptyMessage();
+
+        void showRegisterList();
     }
 
     interface OnItemClickListener {

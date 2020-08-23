@@ -30,6 +30,11 @@ public class RegisterListPresenter implements RegisterListContract.Presenter {
             @Override
             public void onChanged(List<PersonalData> personalData) {
                 mView.setRegisters(personalData);
+                if (personalData  == null || personalData.size() < 1){
+                    mView.showEmptyMessage();
+                } else {
+                    mView.showRegisterList();
+                }
             }
         });
     }
