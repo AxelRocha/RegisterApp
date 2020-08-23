@@ -1,4 +1,4 @@
-package com.example.registerapp.ui;
+package com.example.registerapp.ui.registerlist;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.registerapp.R;
 import com.example.registerapp.model.PersonalData;
 
 public class DeleteDialogFragment extends DialogFragment {

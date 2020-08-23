@@ -1,4 +1,4 @@
-package com.example.registerapp.ui;
+package com.example.registerapp.ui.registerlist;
 
 import com.example.registerapp.BasePresenter;
 import com.example.registerapp.BaseView;
@@ -13,12 +13,16 @@ public interface RegisterListContract {
         void openConfirmDeleteDialog(PersonalData personalData);
 
         void deleteRegister(PersonalData personalData);
+
+        void addRegister();
     }
 
     interface View extends BaseView<RegisterListContract.Presenter> {
         void setRegisters(List<PersonalData> personalData);
 
         void showDeleteConfirmDialog(PersonalData personalData);
+
+        void callAddRegisterActivity();
     }
 
     interface OnItemClickListener {

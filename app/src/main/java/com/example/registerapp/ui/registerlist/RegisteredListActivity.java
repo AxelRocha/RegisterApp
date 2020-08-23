@@ -1,14 +1,18 @@
-package com.example.registerapp.ui;
+package com.example.registerapp.ui.registerlist;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.registerapp.R;
 import com.example.registerapp.database.RegisterRoomDatabase;
 import com.example.registerapp.model.PersonalData;
+import com.example.registerapp.ui.addregister.AddRegisterActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -30,6 +34,14 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
 
         RegisterRoomDatabase db = RegisterRoomDatabase.getDatabase(getApplication());
         mPresenter = new RegisterListPresenter(this, db.dataDao());
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.addRegister();
+            }
+        });
     }
 
     @Override
@@ -55,6 +67,12 @@ public class RegisteredListActivity extends AppCompatActivity implements Registe
         bundle.putSerializable("personalDataObj", personalData);
         fragment.setArguments(bundle);
         fragment.show(getSupportFragmentManager(), "confirmDialog");
+    }
+
+    @Override
+    public void callAddRegisterActivity() {
+        Intent intent = new Intent(this, AddRegisterActivity.class);
+        startActivity(intent);
     }
 
     @Override

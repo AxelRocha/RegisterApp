@@ -1,4 +1,4 @@
-package com.example.registerapp.ui;
+package com.example.registerapp.ui.registerlist;
 
 import android.view.LayoutInflater;
 import android.view.View;

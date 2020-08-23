@@ -1,4 +1,4 @@
-package com.example.registerapp.ui;
+package com.example.registerapp.ui.registerlist;
 
 import androidx.lifecycle.Observer;
 
@@ -42,5 +42,10 @@ public class RegisterListPresenter implements RegisterListContract.Presenter {
     @Override
     public void deleteRegister(PersonalData personalData) {
         mRegisterRepository.deletePersonalData(personalData);
+    }
+
+    @Override
+    public void addRegister() {
+        mView.callAddRegisterActivity();
     }
 }
