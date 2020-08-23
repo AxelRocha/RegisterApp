@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.addregister.AddRegisterActivity"></activity>
+        <activity
+            android:name=".ui.addregister.AddRegisterActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity android:name=".ui.registerlist.RegisteredListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
