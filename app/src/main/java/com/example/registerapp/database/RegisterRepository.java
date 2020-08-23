@@ -21,7 +21,7 @@ public class RegisterRepository {
         return mAllData;
     }
 
-    public void insert(PersonalData personalData) {
+    public void insertRegister(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.insertPersonalData(personalData);
         });
