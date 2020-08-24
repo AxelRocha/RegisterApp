@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.registerapp.R;
 import com.example.registerapp.database.RegisterRoomDatabase;
@@ -19,6 +20,8 @@ import com.google.android.material.textfield.TextInputLayout;
 public class AddRegisterActivity extends AppCompatActivity implements AddRegisterContract.View{
 
     private AddRegisterContract.Presenter mPresenter;
+
+    private TextView mIdentifierTextView;
 
     private EditText mNameEditText;
     private EditText mAgeEditText;
@@ -86,6 +89,9 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
     }
 
     private void initViews() {
+        mIdentifierTextView = findViewById(R.id.identifierTextView);
+        setActivityIdentifier();
+
         mNameEditText = findViewById(R.id.nameEditText);
         mAgeEditText = findViewById(R.id.ageEditText);
         mPhoneEditText = findViewById(R.id.phoneEditText);
@@ -151,6 +157,14 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
 
             }
         });
+    }
+
+    private void setActivityIdentifier() {
+        if (mEditMode){
+            mIdentifierTextView.setText("Editar Cadastro");
+        } else {
+            mIdentifierTextView.setText("Novo Cadastro");
+        }
     }
 
 
