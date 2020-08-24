@@ -10,9 +10,10 @@ public class Constants {
     public static final int FIELD_PHONE = 12;
     public static final int FIELD_CEP = 13;
     public static final int FIELD_STREET = 14;
-    public static final int FIELD_DISTRICT = 15;
-    public static final int FIELD_CITY = 16;
-    public static final int FIELD_UF = 17;
+    public static final int FIELD_NUMBER = 15;
+    public static final int FIELD_DISTRICT = 16;
+    public static final int FIELD_CITY = 17;
+    public static final int FIELD_UF = 18;
 
     public static final String PERSONAL_DATA_ID = "personal_data_id";
 

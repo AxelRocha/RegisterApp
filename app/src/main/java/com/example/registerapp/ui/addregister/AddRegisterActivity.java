@@ -30,6 +30,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
     private EditText mPhoneEditText;
     private EditText mCepEditText;
     private EditText mStreetEditText;
+    private EditText mNumberEditText;
     private EditText mDistrictEditText;
     private EditText mCityEditText;
     private EditText mUfEditText;
@@ -39,6 +40,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
     private TextInputLayout mPhoneTextInputLayout;
     private TextInputLayout mCepTextInputLayout;
     private TextInputLayout mStreetTextInputLayout;
+    private TextInputLayout mNumberTextInputLayout;
     private TextInputLayout mDistrictTextInputLayout;
     private TextInputLayout mCityTextInputLayout;
     private TextInputLayout mUfTextInputLayout;
@@ -78,6 +80,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mPhoneEditText.setText(mRegister.getPhone());
         mCepEditText.setText(mRegister.getCep());
         mStreetEditText.setText(mRegister.getStreet());
+        mNumberEditText.setText(mRegister.getNumber());
         mDistrictEditText.setText(mRegister.getDistrict());
         mCityEditText.setText(mRegister.getCity());
         mUfEditText.setText(mRegister.getUf());
@@ -99,6 +102,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mPhoneEditText = findViewById(R.id.phoneEditText);
         mCepEditText = findViewById(R.id.cepEditText);
         mStreetEditText = findViewById(R.id.streetEditText);
+        mNumberEditText = findViewById(R.id.numberEditText);
         mDistrictEditText = findViewById(R.id.districtEditText);
         mCityEditText = findViewById(R.id.cityEditText);
         mUfEditText = findViewById(R.id.ufEditText);
@@ -108,6 +112,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mPhoneTextInputLayout = findViewById(R.id.phoneTextInputLayout);
         mCepTextInputLayout = findViewById(R.id.cepTextInputLayout);
         mStreetTextInputLayout = findViewById(R.id.streetTextInputLayout);
+        mNumberTextInputLayout = findViewById(R.id.numberTextInputLayout);
         mDistrictTextInputLayout = findViewById(R.id.districtTextInputLayout);
         mCityTextInputLayout = findViewById(R.id.cityTextInputLayout);
         mUfTextInputLayout = findViewById(R.id.ufTextInputLayout);
@@ -123,9 +128,10 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
                 mRegister.setPhone(mPhoneEditText.getText().toString());
                 mRegister.setCep(mCepEditText.getText().toString());
                 mRegister.setStreet(mStreetEditText.getText().toString());
+                mRegister.setNumber(mNumberEditText.getText().toString());
                 mRegister.setDistrict(mDistrictEditText.getText().toString());
                 mRegister.setCity(mCityEditText.getText().toString());
-                mRegister.setUf(mUfEditText.getText().toString());
+                mRegister.setUf(mUfEditText.getText().toString().toUpperCase());
 
                 boolean valid = mPresenter.validate(mRegister);
 
@@ -143,9 +149,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
 
         mCepEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -155,9 +159,33 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable editable) {}
+        });
 
+        mNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mNumberTextInputLayout.setErrorEnabled(false);
             }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+        mUfEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mUfTextInputLayout.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
         });
     }
 
@@ -195,6 +223,8 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
             mCepTextInputLayout.setError("CEP Inválido");
         } else if (fieldId == Constants.FIELD_STREET){
             mStreetTextInputLayout.setError("Rua Inválida");
+        } else if (fieldId == Constants.FIELD_NUMBER){
+            mNumberTextInputLayout.setError("Número Inválido");
         } else if (fieldId == Constants.FIELD_DISTRICT){
             mDistrictTextInputLayout.setError("Bairro Inválido");
         } else if (fieldId == Constants.FIELD_CITY){
@@ -211,6 +241,7 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mPhoneTextInputLayout.setErrorEnabled(false);
         mCepTextInputLayout.setErrorEnabled(false);
         mStreetTextInputLayout.setErrorEnabled(false);
+        mNumberTextInputLayout.setErrorEnabled(false);
         mDistrictTextInputLayout.setErrorEnabled(false);
         mCityTextInputLayout.setErrorEnabled(false);
         mUfTextInputLayout.setErrorEnabled(false);

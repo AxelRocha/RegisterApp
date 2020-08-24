@@ -1,5 +1,7 @@
 package com.example.registerapp.ui.addregister;
 
+import android.util.Log;
+
 import com.example.registerapp.database.DataDao;
 import com.example.registerapp.database.RegisterRepository;
 import com.example.registerapp.model.Address;
@@ -19,7 +21,7 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
     private final AddRegisterContract.View mView;
     private final RegisterRepository mRegisterRepository;
 
-    private boolean isCepValid = false;
+    private boolean isCepValid = true;
 
     public AddRegisterPresenter(AddRegisterContract.View view, DataDao dataDao) {
         this.mView = view;
@@ -66,6 +68,11 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
 
         if (personalData.getStreet().isEmpty() || !isValidName(personalData.getStreet())){
             mView.showErrorMessage(Constants.FIELD_STREET);
+            return false;
+        }
+
+        if (personalData.getNumber().isEmpty() || !isValidNumber(personalData.getNumber())){
+            mView.showErrorMessage(Constants.FIELD_NUMBER);
             return false;
         }
 
@@ -132,6 +139,14 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
     public boolean isValidPhone(String phone) {
         Pattern patron = Pattern.compile("^[0-9]*$");
         if (phone.length() < 7 || !patron.matcher(phone).matches()){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isValidNumber(String phone) {
+        Pattern patron = Pattern.compile("^[0-9]*$");
+        if (!patron.matcher(phone).matches()){
             return false;
         }
         return true;
