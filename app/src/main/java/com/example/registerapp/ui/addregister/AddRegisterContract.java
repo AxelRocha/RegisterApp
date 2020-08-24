@@ -25,5 +25,7 @@ public interface AddRegisterContract {
         void finishActivity();
 
         void populateAddressEditTexts(Address address);
+
+        void closeKeyboard();
     }
 }

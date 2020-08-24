@@ -102,6 +102,7 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
                     mView.showErrorMessage(Constants.FIELD_CEP);
                     isCepValid = false;
                 }
+                mView.closeKeyboard();
             }
 
             @Override

@@ -2,10 +2,12 @@ package com.example.registerapp.ui.addregister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -225,5 +227,14 @@ public class AddRegisterActivity extends AppCompatActivity implements AddRegiste
         mDistrictEditText.setText(address.getDistrict());
         mCityEditText.setText(address.getCity());
         mUfEditText.setText(address.getUf());
+    }
+
+    @Override
+    public void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null){
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
