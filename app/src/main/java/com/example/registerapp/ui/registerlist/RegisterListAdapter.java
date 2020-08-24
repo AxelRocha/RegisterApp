@@ -33,9 +33,20 @@ public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        StringBuilder builder = new StringBuilder();
+
         holder.mItem = mDatas.get(position);
-        holder.nameTextView .setText(mDatas.get(position).getName());
-        holder.phoneTextView .setText(mDatas.get(position).getPhone());
+        holder.nameTextView.setText(mDatas.get(position).getName());
+
+        builder.append(mDatas.get(position).getAge()).append(" anos");
+        holder.ageTextView.setText(builder.toString());
+        builder.setLength(0);
+
+        builder.append(mDatas.get(position).getCity()).append(", ").append(mDatas.get(position).getUf());
+        holder.locationTextView.setText(builder.toString());
+        builder.setLength(0);
+
+        holder.phoneTextView.setText(mDatas.get(position).getPhone());
 
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -66,14 +77,18 @@ public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView nameTextView;
+        public final TextView ageTextView;
+        public final TextView locationTextView;
         public final TextView phoneTextView;
         public PersonalData mItem;
 
         public ViewHolder(View view){
             super(view);
             this.mView = view;
-            this.nameTextView = (TextView) view.findViewById(R.id.tvName);
-            this.phoneTextView = (TextView) view.findViewById(R.id.tvPhone);
+            this.nameTextView = (TextView) view.findViewById(R.id.nameTextView);
+            this.ageTextView = (TextView) view.findViewById(R.id.ageTextView);
+            this.locationTextView = (TextView) view.findViewById(R.id.locationTextView);
+            this.phoneTextView = (TextView) view.findViewById(R.id.phoneTextView);
         }
     }
 }
