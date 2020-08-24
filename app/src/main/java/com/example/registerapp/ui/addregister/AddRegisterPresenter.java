@@ -23,6 +23,8 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
     private final AddRegisterContract.View mView;
     private final RegisterRepository mRegisterRepository;
 
+    private boolean isCepValid = false;
+
     public AddRegisterPresenter(AddRegisterContract.View view, DataDao dataDao) {
         this.mView = view;
         this.mView.setPresenter(this);
@@ -97,8 +99,12 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
             @Override
             public void onResponse(Call<Address> call, Response<Address> response) {
                 Address address = response.body();
-                if (address != null){
+                if (address != null && address.getCep() != null){
                     mView.populateAddressEditTexts(address);
+                    isCepValid = true;
+                } else {
+                    mView.showErrorMessage(Constants.FIELD_CEP);
+                    isCepValid = false;
                 }
             }
 
@@ -136,7 +142,7 @@ public class AddRegisterPresenter implements AddRegisterContract.Presenter {
 
     private boolean isValidCep(String cep) {
         Pattern patron = Pattern.compile("^[0-9]*$");
-        if(cep.length() < 8 || !patron.matcher(cep).matches()){
+        if(cep.length() < 8 || !patron.matcher(cep).matches() || !isCepValid){
             return false;
         }
         return true;
