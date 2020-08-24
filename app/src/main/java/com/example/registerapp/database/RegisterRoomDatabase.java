@@ -2,11 +2,9 @@ package com.example.registerapp.database;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.registerapp.model.PersonalData;
 
@@ -31,28 +29,11 @@ public abstract class RegisterRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             RegisterRoomDatabase.class, "word_database")
-                            .addCallback(sRoomDatabaseCallback)
+                            //.addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
-
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-
-            databaseWriteExecutor.execute(() -> {
-                DataDao dao = INSTANCE.dataDao();
-                dao.deleteAllPersonalData();
-
-                PersonalData personalData = new PersonalData("Axel", 22,"12345","99999999", "", "","", "");
-                dao.insertPersonalData(personalData);
-                personalData = new PersonalData("Rocha", 22,"1234","99999999", "", "","", "");
-                dao.insertPersonalData(personalData);
-            });
-        }
-    };
 }

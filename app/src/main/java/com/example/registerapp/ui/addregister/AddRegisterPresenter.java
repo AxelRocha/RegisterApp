@@ -1,15 +1,11 @@
 package com.example.registerapp.ui.addregister;
 
-import android.util.Log;
-import android.util.Patterns;
-
 import com.example.registerapp.database.DataDao;
 import com.example.registerapp.database.RegisterRepository;
 import com.example.registerapp.model.Address;
 import com.example.registerapp.model.PersonalData;
 import com.example.registerapp.network.GetDataService;
 import com.example.registerapp.network.RetrofitClientInstance;
-import com.example.registerapp.ui.registerlist.RegisterListContract;
 import com.example.registerapp.utils.Constants;
 
 import java.util.regex.Pattern;

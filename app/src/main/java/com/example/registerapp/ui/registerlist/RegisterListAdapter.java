@@ -85,10 +85,10 @@ public class RegisterListAdapter extends RecyclerView.Adapter<RegisterListAdapte
         public ViewHolder(View view){
             super(view);
             this.mView = view;
-            this.nameTextView = (TextView) view.findViewById(R.id.nameTextView);
-            this.ageTextView = (TextView) view.findViewById(R.id.ageTextView);
-            this.locationTextView = (TextView) view.findViewById(R.id.locationTextView);
-            this.phoneTextView = (TextView) view.findViewById(R.id.phoneTextView);
+            this.nameTextView = view.findViewById(R.id.nameTextView);
+            this.ageTextView = view.findViewById(R.id.ageTextView);
+            this.locationTextView = view.findViewById(R.id.locationTextView);
+            this.phoneTextView = view.findViewById(R.id.phoneTextView);
         }
     }
 }

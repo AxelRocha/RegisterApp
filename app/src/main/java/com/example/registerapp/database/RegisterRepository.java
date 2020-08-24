@@ -1,7 +1,5 @@
 package com.example.registerapp.database;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.registerapp.model.PersonalData;
