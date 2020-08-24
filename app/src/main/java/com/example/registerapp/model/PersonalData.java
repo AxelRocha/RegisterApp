@@ -3,6 +3,7 @@ package com.example.registerapp.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -34,6 +35,10 @@ public class PersonalData implements Serializable {
     private String street;
 
     @NonNull
+    @ColumnInfo(name = "number")
+    private String number;
+
+    @NonNull
     @ColumnInfo(name = "district")
     private String district;
 
@@ -45,13 +50,27 @@ public class PersonalData implements Serializable {
     @ColumnInfo(name = "uf")
     private String uf;
 
+    @Ignore
+    public PersonalData() {
+        this.name = "";
+        this.age = 0;
+        this.phone = "";
+        this.cep = "";
+        this.street = "";
+        this.number = "";
+        this.district = "";
+        this.city = "";
+        this.uf = "";
+    }
 
-    public PersonalData(@NonNull String name, int age, @NonNull String phone, @NonNull String cep, @NonNull String street, @NonNull String district, @NonNull String city, @NonNull String uf) {
+
+    public PersonalData(@NonNull String name, int age, @NonNull String phone, @NonNull String cep, @NonNull String street, @NonNull String number, @NonNull String district, @NonNull String city, @NonNull String uf) {
         this.name = name;
         this.age = age;
         this.phone = phone;
         this.cep = cep;
         this.street = street;
+        this.number = number;
         this.district = district;
         this.city = city;
         this.uf = uf;
@@ -97,6 +116,15 @@ public class PersonalData implements Serializable {
 
     public void setStreet(@NonNull String street) {
         this.street = street;
+    }
+
+    @NonNull
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(@NonNull String number) {
+        this.number = number;
     }
 
     @NonNull

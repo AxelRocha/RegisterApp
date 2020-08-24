@@ -1,7 +1,5 @@
 package com.example.registerapp.database;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.registerapp.model.PersonalData;
@@ -12,29 +10,28 @@ public class RegisterRepository {
     private DataDao mDataDao;
     private LiveData<List<PersonalData>> mAllData;
 
-    public RegisterRepository(Context context) {
-        RegisterRoomDatabase db = RegisterRoomDatabase.getDatabase(context);
-        mDataDao = db.dataDao();
+    public RegisterRepository(DataDao dataDao) {
+        mDataDao = dataDao;
         mAllData = mDataDao.getAllPersonalData();
     }
 
-    public LiveData<List<PersonalData>> getAllData() {
+    public LiveData<List<PersonalData>> getAllPersonalData() {
         return mAllData;
     }
 
-    public void insert(PersonalData personalData) {
+    public void insertRegister(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.insertPersonalData(personalData);
         });
     }
 
-    public void delete(PersonalData personalData) {
+    public void deletePersonalData(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.deletePersonalData(personalData);
         });
     }
 
-    public void update(PersonalData personalData) {
+    public void updateRegister(PersonalData personalData) {
         RegisterRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDataDao.updatePersonalData(personalData);
         });

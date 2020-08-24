@@ -1,54 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/card_background"
+    android:layout_margin="4dp"
+    android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/linearLInformation"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center_vertical"
-        android:background="@android:color/holo_orange_light">
-        <TextView
-            android:id="@+id/tvName"
-            android:text="Axel Rocha"
-            style="@style/word_title"
-            android:layout_margin="8dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvPhone"
-            android:text="99625-2627"
-            style="@style/word_title"
-            android:layout_margin="8dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_baseline_person_24"
+            app:tint="@android:color/holo_orange_light" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLNoInformation"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
 
         <TextView
-            android:layout_gravity="center"
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nenhuma Informação registrada."/>
+            android:maxLines="2"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            style="@style/word_title"
+            tools:text="Axel Rocha"/>
+
+        <TextView
+            android:id="@+id/ageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="14sp"
+            style="@style/word_title"
+            tools:text="22 anos"/>
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Axel Rocha"
+            android:maxLines="2"
+            android:textSize="14sp"
+            style="@style/word_title"
+            tools:text="Curitiba, PR"/>
 
     </LinearLayout>
 
-
-
+    <TextView
+        android:id="@+id/phoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:gravity="center"
+        style="@style/word_title"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        tools:text="65 996252627"/>
 
 </LinearLayout>
