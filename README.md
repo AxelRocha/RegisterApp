@@ -15,7 +15,7 @@ Objetivo era criar um App de Cadastro que salva dados pessoais, e que estes seja
 
 * Ao digitar o CEP, corretamente, o app auto preenche as informações de endereço apropriadas.
 
-* Inclusao(1*), Alteração(2*) e Remoção(3*) de cadastros.
+* Inclusao(**1**), Alteração(**2**) e Remoção(**3**) de cadastros.
 
    1 -Para Incluir novo cadastro:
 
