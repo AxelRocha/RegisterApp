@@ -4,7 +4,7 @@ Objetivo era criar um App de Cadastro que salva dados pessoais, e que estes seja
 
 ### Para buildar o projeto é necessário:
 
-* Android Studio
+* Android Studio 4.0(mínimo)
 * Java 8 (mínimo)
 * Android Sdk 21 (mínimo)
 * Gradle 6.1.1 (mínimo)
